@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
-public class connect4 extends JFrame {
+public class connect4 extends JFrame implements ActionListener {
 
    private JButton[] buttonArr = new JButton[42];
+   private int[][] gameBoard = new int[6][7];
    
    private JMenuBar mainMenu;
    private JMenu gameMenu;
@@ -45,10 +47,13 @@ public class connect4 extends JFrame {
       gameBoard.setLayout(new GridLayout(0, 7));
     
       for (int i = 0; i < 42; i++) {
-         buttonArr[i] = new JButton("" + i);
+         buttonArr[i] = new JButton("" + (i));
          gameBoard.add(buttonArr[i]);
          if (Integer.parseInt(buttonArr[i].getText()) > 6) {
-            buttonArr[i].setEnabled(false);
+            //buttonArr[i].setEnabled(false);
+         }
+         else {
+            buttonArr[i].addActionListener(this);
          }
       }
       
@@ -71,5 +76,54 @@ public class connect4 extends JFrame {
      
    }
    
+   
+   public void actionPerformed(ActionEvent e) {
+      if(e.getActionCommand().equals("0")) {
+         playCol1();
+      }
+      else if (e.getActionCommand().equals("1")) {
+         playCol2();
+      }
+      else if (e.getActionCommand().equals("2")) {
+         playCol3();
+      }
+      else if (e.getActionCommand().equals("3")) {
+         playCol4();
+      }
+      else if (e.getActionCommand().equals("4")) {
+         playCol5();
+      }
+      else if (e.getActionCommand().equals("5")) {
+         playCol6();
+      }
+      
+     }
+      
+      
+      public void playCol1(){
+         buttonArr[15].setIcon(new javax.swing.ImageIcon("redSquare.png"));
+         
+      }
+      
+      public void playCol2() {
+         buttonArr[22].setIcon(new javax.swing.ImageIcon("blueSquare.png"));
+         
+      }
+      
+      public void playCol3() {
+      
+      }
+      
+      public void playCol4() {
+      
+      }
+
+      public void playCol5() {
+      
+      }
+      
+      public void playCol6() {
+      
+      }
 
 }

@@ -29,7 +29,6 @@ public class MenuListener implements ActionListener {
    
    public void restartGame() {
       gameFrame.setTitle("Connect 4, \"Ready to Play\"");
-      System.out.println("New game called");
    }
    
    public void showAbout() {
