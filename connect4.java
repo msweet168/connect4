@@ -10,6 +10,9 @@ public class connect4 extends JFrame {
    private JMenu gameMenu;
    private JMenuItem newGame;
    private JMenu aboutMenu;
+   private JMenuItem howToPlay;
+   private JMenuItem aboutUs;
+   private JMenuItem exit;
    private JMenu quitMenu;
 
    public static void main(String[] args) {
@@ -20,10 +23,17 @@ public class connect4 extends JFrame {
    
       mainMenu = new JMenuBar();
       gameMenu = new JMenu("Game");
-      aboutMenu = new JMenu("About");
+      aboutMenu = new JMenu("Help");
       quitMenu = new JMenu("Quit");
+      exit = new JMenuItem("Exit Game");
       newGame = new JMenuItem("New Game");
+      howToPlay = new JMenuItem("How to Play");
+      aboutUs = new JMenuItem("About the Team");
       gameMenu.add(newGame);
+      aboutMenu.add(howToPlay);
+      aboutMenu.addSeparator();
+      aboutMenu.add(aboutUs);
+      quitMenu.add(exit);
       mainMenu.add(gameMenu);
       mainMenu.add(aboutMenu);
       mainMenu.add(quitMenu);
@@ -37,6 +47,9 @@ public class connect4 extends JFrame {
       for (int i = 0; i < 42; i++) {
          buttonArr[i] = new JButton("" + i);
          gameBoard.add(buttonArr[i]);
+         if (Integer.parseInt(buttonArr[i].getText()) > 6) {
+            buttonArr[i].setEnabled(false);
+         }
       }
       
       
@@ -48,6 +61,13 @@ public class connect4 extends JFrame {
       this.setMaximumSize(new Dimension(800,550));
       this.setVisible(true);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+      
+      MenuListener menuListen = new MenuListener(this);
+      
+      howToPlay.addActionListener(menuListen);
+      exit.addActionListener(menuListen);
+      newGame.addActionListener(menuListen);
+      aboutUs.addActionListener(menuListen);
      
    }
    
