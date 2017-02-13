@@ -1,13 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class MenuListener implements ActionListener {
 
    JFrame gameFrame = new JFrame();
+   JButton[] buttonArr2 = new JButton[42];
    
-   public MenuListener(JFrame frame) {
+   
+   public MenuListener(JFrame frame, JButton[] buttons) {
       gameFrame = frame;
+      buttonArr2 = buttons;
    }
    
    
@@ -29,6 +33,9 @@ public class MenuListener implements ActionListener {
    
    public void restartGame() {
       gameFrame.setTitle("Connect 4, \"Ready to Play\"");
+      for (int i = 0; i < 42; i++) {
+         buttonArr2[i].setIcon(null);
+      }
    }
    
    public void showAbout() {
