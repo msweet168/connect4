@@ -11,6 +11,7 @@ public class connect4 extends JFrame implements ActionListener {
    private JMenuBar mainMenu;
    private JMenu gameMenu;
    private JMenuItem newGame;
+   private JMenuItem enterNames;
    private JMenu aboutMenu;
    private JMenuItem howToPlay;
    private JMenuItem aboutUs;
@@ -18,6 +19,8 @@ public class connect4 extends JFrame implements ActionListener {
    private JMenu quitMenu;
    
    private int turn;
+   private String player1;
+   private String player2;
 
    public static void main(String[] args) {
       new connect4();
@@ -31,9 +34,11 @@ public class connect4 extends JFrame implements ActionListener {
       quitMenu = new JMenu("Quit");
       exit = new JMenuItem("Exit Game");
       newGame = new JMenuItem("New Game");
+      enterNames = new JMenuItem("Enter Player Names");
       howToPlay = new JMenuItem("How to Play");
       aboutUs = new JMenuItem("About the Team");
       gameMenu.add(newGame);
+      gameMenu.add(enterNames);
       aboutMenu.add(howToPlay);
       aboutMenu.addSeparator();
       aboutMenu.add(aboutUs);
@@ -43,6 +48,8 @@ public class connect4 extends JFrame implements ActionListener {
       mainMenu.add(quitMenu);
       
       turn = 1;
+      player1 = "Player 1";
+      player2 = "Player 2";
       
       this.setJMenuBar(mainMenu);
       
@@ -77,6 +84,7 @@ public class connect4 extends JFrame implements ActionListener {
       exit.addActionListener(menuListen);
       newGame.addActionListener(menuListen);
       newGame.addActionListener(this);
+      enterNames.addActionListener(this);
       aboutUs.addActionListener(menuListen);
      
    }
@@ -107,6 +115,11 @@ public class connect4 extends JFrame implements ActionListener {
       }
       else if (e.getActionCommand().equals("New Game")) {
          gameBoardArr = new int[6][7];
+         turn = 1;
+      }
+      else if (e.getActionCommand().equals("Enter Player Names")) {
+         player1 = JOptionPane.showInputDialog("Player 1, enter your name: ");
+         player2 = JOptionPane.showInputDialog("Player 2, enter your name: ");
       }
       
      }
@@ -199,10 +212,19 @@ public class connect4 extends JFrame implements ActionListener {
       public void changeColor(int index) {
          if (turn == 1) {
             turn = 2;
+            this.setTitle(player2 + "'s turn");
             buttonArr[index].setIcon(new javax.swing.ImageIcon("redSquare.png"));
+            
+            //System.out.println(buttonArr[index].getIcon());
+            
+            //if(buttonArr[index].getIcon().equals("redSquare.png")) {
+               //System.out.println("yay");
+            //}
+            
          }
          else if (turn == 2) {
             turn = 1;
+            this.setTitle(player1 + "'s turn");
             buttonArr[index].setIcon(new javax.swing.ImageIcon("blueSquare.png"));
          }
          
