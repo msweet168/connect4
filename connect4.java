@@ -38,6 +38,7 @@ public class connect4 extends JFrame implements ActionListener {
       howToPlay = new JMenuItem("How to Play");
       aboutUs = new JMenuItem("About the Team");
       gameMenu.add(newGame);
+      gameMenu.addSeparator();
       gameMenu.add(enterNames);
       aboutMenu.add(howToPlay);
       aboutMenu.addSeparator();
@@ -62,6 +63,7 @@ public class connect4 extends JFrame implements ActionListener {
          gameBoard.add(buttonArr[i]);
          if (Integer.parseInt(buttonArr[i].getText()) > 6) {
             //buttonArr[i].setEnabled(false);
+            buttonArr[i].setText("");
          }
          else {
             buttonArr[i].addActionListener(this);
@@ -129,7 +131,7 @@ public class connect4 extends JFrame implements ActionListener {
          
          for (int i = 5; i >= 0; i--) {
             if (gameBoardArr[i][0] == 0) {
-               gameBoardArr[i][0] = 1;
+               gameBoardArr[i][0] = turn;
                int arrayNum = (7*i);
                changeColor(arrayNum);
                break;
@@ -141,7 +143,7 @@ public class connect4 extends JFrame implements ActionListener {
       public void playCol2() {
          for (int i = 5; i >= 0; i--) {
             if (gameBoardArr[i][1] == 0) {
-               gameBoardArr[i][1] = 1;
+               gameBoardArr[i][1] = turn;
                int arrayNum = (7*i)+1;
                changeColor(arrayNum);
                break;
@@ -152,7 +154,7 @@ public class connect4 extends JFrame implements ActionListener {
       public void playCol3() {
          for (int i = 5; i >= 0; i--) {
             if (gameBoardArr[i][2] == 0) {
-               gameBoardArr[i][2] = 1;
+               gameBoardArr[i][2] = turn;
                int arrayNum = (7*i)+2;
                changeColor(arrayNum);
                break;
@@ -164,7 +166,7 @@ public class connect4 extends JFrame implements ActionListener {
       public void playCol4() {
          for (int i = 5; i >= 0; i--) {
             if (gameBoardArr[i][3] == 0) {
-               gameBoardArr[i][3] = 1;
+               gameBoardArr[i][3] = turn;
                int arrayNum = (7*i)+3;
                changeColor(arrayNum);
                break;
@@ -176,7 +178,7 @@ public class connect4 extends JFrame implements ActionListener {
       public void playCol5() {
          for (int i = 5; i >= 0; i--) {
             if (gameBoardArr[i][4] == 0) {
-               gameBoardArr[i][4] = 1;
+               gameBoardArr[i][4] = turn;
                int arrayNum = (7*i)+4;
                changeColor(arrayNum);
                break;
@@ -188,7 +190,7 @@ public class connect4 extends JFrame implements ActionListener {
       public void playCol6() {
          for (int i = 5; i >= 0; i--) {
             if (gameBoardArr[i][5] == 0) {
-               gameBoardArr[i][5] = 1;
+               gameBoardArr[i][5] = turn;
                int arrayNum = (7*i)+5;
                changeColor(arrayNum);
                break;
@@ -200,7 +202,7 @@ public class connect4 extends JFrame implements ActionListener {
       public void playCol7() {
          for (int i = 5; i >= 0; i--) {
             if (gameBoardArr[i][6] == 0) {
-               gameBoardArr[i][6] = 1;
+               gameBoardArr[i][6] = turn;
                int arrayNum = (7*i)+6;
                changeColor(arrayNum);
                break;
@@ -228,7 +230,38 @@ public class connect4 extends JFrame implements ActionListener {
             buttonArr[index].setIcon(new javax.swing.ImageIcon("blueSquare.png"));
          }
          
-         //Run scan method
+         for (int i = 0; i < gameBoardArr.length; i++) {
+            for (int j = 0; j < gameBoardArr[i].length; j++) {
+             System.out.print(gameBoardArr[i][j] + " ");
+         }
+             System.out.println();
+         }
+         
+         scanBoard();
+      }
+      
+      public void scanBoard() {
+         CheckGrid gridScanner = new CheckGrid(gameBoardArr);
+         boolean isWinner = gridScanner.scan();
+         
+         if (isWinner) {
+            if (turn == 2) {
+               //Player 1 win
+               System.out.println("Player 1 wins.");
+               JOptionPane.showMessageDialog( null,"" + player1 + " Wins!");
+               
+            
+            }
+            else {
+               //Player 2 win
+               System.out.println("Player 2 wins.");
+               JOptionPane.showMessageDialog( null,"" + player2 + " Wins!");
+
+            }
+         }
+         else {
+            System.out.println("No Win");
+         }
       }
 
 }
