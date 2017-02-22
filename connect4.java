@@ -19,6 +19,7 @@ public class connect4 extends JFrame implements ActionListener {
    private JMenu quitMenu;
    
    private int turn;
+   private int scanNumber;
    private String player1;
    private String player2;
 
@@ -214,6 +215,7 @@ public class connect4 extends JFrame implements ActionListener {
       public void changeColor(int index) {
          if (turn == 1) {
             turn = 2;
+            scanNumber = 1;
             this.setTitle(player2 + "'s turn");
             buttonArr[index].setIcon(new javax.swing.ImageIcon("redSquare.png"));
             
@@ -226,6 +228,7 @@ public class connect4 extends JFrame implements ActionListener {
          }
          else if (turn == 2) {
             turn = 1;
+            scanNumber = 2;
             this.setTitle(player1 + "'s turn");
             buttonArr[index].setIcon(new javax.swing.ImageIcon("blueSquare.png"));
          }
@@ -242,7 +245,7 @@ public class connect4 extends JFrame implements ActionListener {
       
       public void scanBoard() {
          CheckGrid gridScanner = new CheckGrid(gameBoardArr);
-         boolean isWinner = gridScanner.scan();
+         boolean isWinner = gridScanner.scan(scanNumber);
          
          if (isWinner) {
             if (turn == 2) {
@@ -258,10 +261,18 @@ public class connect4 extends JFrame implements ActionListener {
                JOptionPane.showMessageDialog( null,"" + player2 + " Wins!");
 
             }
+            
+            gameBoardArr = new int[6][7];
+            turn = 1;
+            MenuListener menuClass = new MenuListener(this, buttonArr);
+            menuClass.restartGame();
          }
          else {
             System.out.println("No Win");
          }
+         
       }
+      
+      
 
 }

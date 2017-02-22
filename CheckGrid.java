@@ -13,7 +13,7 @@ public class CheckGrid{
    
    
    
-   public boolean scan(){
+   public boolean scan(int player){
    
       for(int i = 0; i<array.length;i++){
          for(int j = 0; j<array[i].length;j++){
@@ -21,7 +21,7 @@ public class CheckGrid{
             //gets button's icon at [i][j]
             //check = array[i][j].getIcon();
             //check = array[i][j];
-            check = 1;
+            check = player;
             
             
             
@@ -41,7 +41,7 @@ public class CheckGrid{
             }
             
             //check out of bounds
-            if((i-3)>=0||(j+3)<=6){   
+            if((i-3)>=6||(j+3)<=7){   
          
             //check diagonal up to the right
                if(array[i][j]==check){
