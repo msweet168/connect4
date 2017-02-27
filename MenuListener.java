@@ -46,7 +46,7 @@ public class MenuListener implements ActionListener {
    public void showHow() {
       JOptionPane.showMessageDialog( null,"How to play Connect 4 \nIt's Simple!" +
       " Click the top of a column to drop a piece.\nIf you can get 4 of your " +
-      "pieces in a row (diagnoal or stright)\nthen you win!");
+      "pieces in a row (diagnoal or straight)\nthen you win!");
 
    }
    
