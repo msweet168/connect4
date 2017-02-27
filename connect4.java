@@ -22,6 +22,7 @@ public class connect4 extends JFrame implements ActionListener {
    private int scanNumber;
    private String player1;
    private String player2;
+   private int turnCounter;
 
    public static void main(String[] args) {
       new connect4();
@@ -119,6 +120,7 @@ public class connect4 extends JFrame implements ActionListener {
       else if (e.getActionCommand().equals("New Game")) {
          gameBoardArr = new int[6][7];
          turn = 1;
+         turnCounter = 0;
       }
       else if (e.getActionCommand().equals("Enter Player Names")) {
          player1 = JOptionPane.showInputDialog("Player 1, enter your name: ");
@@ -246,6 +248,7 @@ public class connect4 extends JFrame implements ActionListener {
       public void scanBoard() {
          CheckGrid gridScanner = new CheckGrid(gameBoardArr);
          boolean isWinner = gridScanner.scan(scanNumber);
+         turnCounter++;
          
          if (isWinner) {
             if (turn == 2) {
@@ -266,9 +269,21 @@ public class connect4 extends JFrame implements ActionListener {
             turn = 1;
             MenuListener menuClass = new MenuListener(this, buttonArr);
             menuClass.restartGame();
+            turnCounter = 0;
          }
          else {
             System.out.println("No Win");
+            
+            if (turnCounter == 42) {
+               System.out.println("Tie");
+               JOptionPane.showMessageDialog( null,"Tie");
+               
+               gameBoardArr = new int[6][7];
+               turn = 1;
+               MenuListener menuClass = new MenuListener(this, buttonArr);
+               menuClass.restartGame();
+               turnCounter = 0;
+            }
          }
          
       }
