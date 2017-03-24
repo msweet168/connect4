@@ -1,3 +1,11 @@
+/**
+*@author Scott Tinker
+*@Version 1.0
+*Check Grid class
+*This class is ran every time a piece is placed on the connect 4 board
+*to check if there is a winner. 
+*/
+
 import java.awt.*;
 import javax.swing.*;
 
